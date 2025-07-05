@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>V:CLASH Tournament</title>
+  <link rel="icon" type="image/png" href="favicon.png?v=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background-color: #0f0f0f;
+      color: #fff;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      width: 100%;
+      padding: 15px 30px;
+      background: rgba(0, 0, 0, 0.9);
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      transition: top 0.3s;
+    }
+
+    header .logo {
+      font-size: 1.5rem;
+      color: #ff4655;
+    }
+
+    header nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    header nav a:hover {
+      color: #ff4655;
+    }
+
+    .hero {
+      background: url('https://images5.alphacoders.com/136/1360655.png') no-repeat center center;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+
+    .hero a {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #ff4655;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .hero a:hover {
+      background-color: #e03b49;
+    }
+
+    .overview {
+      background: #1b1b1b;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .overview h2 {
+      color: #ff4655;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .overview p {
+      font-size: 1rem;
+      max-width: 700px;
+      margin: auto;
+      color: #ccc;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 40px;
+      padding: 80px 20px;
+      background: url('https://images5.alphacoders.com/136/1360655.png') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .form-box {
+      background: white;
+      border-radius: 12px;
+      padding: 30px 40px;
+      width: 420px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      color: #111;
+    }
+
+    .form-box h2 {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      margin: 12px 0 5px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 0.95rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .checkbox {
+      display: flex;
+      align-items: center;
+      margin-top: 15px;
+      gap: 10px;
+    }
+
+    .checkbox input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #ff4655;
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #ff4655;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .submit-btn:hover {
+      background-color: #e03b49;
+    }
+
+    .player-pair {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .player-pair > div {
+      flex: 1;
+    }
+
+    .info-box {
+      background: rgba(255, 255, 255, 0.9);
+      width: 340px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      color: #111;
+    }
+
+    .info-box h2 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .info-box p, .info-box strong {
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .info-box .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .info-box a {
+      color: #ff4655;
+      text-decoration: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #111;
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    footer a:hover img {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 5px rgba(255, 70, 85, 0.6));
+}
+
+    @media (max-width: 768px) {
+      .player-pair {
+        flex-direction: column;
+      }
+
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+  <script>
+    let prevScrollPos = window.pageYOffset;
+    window.onscroll = function () {
+      const currentScrollPos = window.pageYOffset;
+      const header = document.querySelector("header");
+      if (prevScrollPos > currentScrollPos) {
+        header.style.top = "0";
+      } else {
+        header.style.top = "-80px";
+      }
+      prevScrollPos = currentScrollPos;
+    };
+  </script>
+</head>
+<body>
+  <header>
+    <div class="logo">V:CLASH</div>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#register">Register</a>
+      <a href="#info">Info</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="hero">
+  <h1>V:CLASH TOURNAMENT</h1>
+  <p>Compete. Stream. Win. One Clash. One Champion.</p>
+  <a href="#register">Register Now</a>
+</section>
+
+<section class="overview">
+  <h2>What is V:CLASH?</h2>
+  <p>V:CLASH is a community-driven Valorant tournament featuring top-tier competition, livestreamed matches, and cash rewards. Join the battle from your setup and make your mark.</p>
+</section>
+
+<div class="container">
+  <form class="form-box" id="register" action="https://formspree.io/f/mjkrdgbv" method="POST">
+    <h2>Register Your Team</h2>
+    <label>Team Name*</label>
+    <input type="text" name="team_name" required>
+    <label>Team Captain Name*</label>
+    <input type="text" name="captain_name" required>
+    <label>Phone Number</label>
+    <input type="tel" name="phone_number">
+    <div class="player-pair">
+      <div>
+        <label>Player 1 IGN & Tag*</label>
+        <input type="text" name="player1" required>
+      </div>
+      <div>
+        <label>Player 2 IGN & Tag*</label>
+        <input type="text" name="player2" required>
+      </div>
+    </div>
+    <div class="player-pair">
+      <div>
+        <label>Player 3 IGN & Tag*</label>
+        <input type="text" name="player3" required>
+      </div>
+      <div>
+        <label>Player 4 IGN & Tag*</label>
+        <input type="text" name="player4" required>
+      </div>
+    </div>
+    <div class="player-pair">
+      <div>
+        <label>Player 5 IGN & Tag*</label>
+        <input type="text" name="player5" required>
+      </div>
+      <div>
+        <label>Substitute (Optional)</label>
+        <input type="text" name="substitute">
+      </div>
+    </div>
+    <label>Discord Username*</label>
+    <input type="text" name="discord_username" required>
+    <div class="checkbox">
+      <input type="checkbox" name="rules_agreed" required>
+      <label for="rules_agreed">I agree to the rules</label>
+    </div>
+    <button class="submit-btn" type="submit">Register</button>
+  </form>
+
+  <div class="info-box" id="info">
+    <h2>About the Tournament</h2>
+    <div class="grid">
+      <p><strong>💸 Entry:</strong> ₹100/team</p>
+      <p><strong>🏆 Prize:</strong> ₹3,000</p>
+      <p><strong>📅 Schedule:</strong> Coming soon</p>
+      <p><strong>📍 Platform:</strong> Discord + YouTube</p>
+    </div>
+    <h3 style="margin-top:20px; font-size: 1.1rem;">📜 Rules</h3>
+    <p>• 5 players per team (1 sub optional)</p>
+    <p>• One entry per team</p>
+    <p>• All matches are final unless proof is provided</p>
+    <p>• Toxicity or cheating = disqualified</p>
+    <p style="margin-top: 15px;"><strong>By registering, you agree to all rules and decisions made by the organizers.</strong></p>
+  </div>
+</div>
+<footer style="background: #111; padding: 20px 0; text-align: center; color: #ccc; font-size: 0.9rem;">
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+    <div style="display: flex; gap: 15px; justify-content: center;">
+      <a href="https://www.youtube.com/@tennoodles" target="_blank" style="transition: transform 0.3s;">
+        <img src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Youtube_colored_svg-1024.png" alt="YouTube" width="26" height="26" style="border-radius: 4px;">
+      </a>
+      <a href="https://www.instagram.com/v.clash_tournament" target="_blank" style="transition: transform 0.3s;">
+        <img src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Instagram_colored_svg_1-1024.png" alt="Instagram" width="26" height="26" style="border-radius: 4px;">
+      </a>
+    </div>
+    <div>
+      © 2025 V:CLASH Tournament | Designed by Tenno | All Rights Reserved
+    </div>
+  </div>
+</footer>
